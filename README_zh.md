@@ -171,10 +171,10 @@ GitHub: [dalianmao000/SteelEngine](https://github.com/dalianmao000/SteelEngine)
 ### 技术演进路线（Mermaid）
 
 ```mermaid
-flow LR
-    A[MVP<br>单Agent] --> B[Core<br>多Agent]
-    B --> C[Scale<br>全链路]
-    C --> D[Opt<br>智能化]
+graph LR
+    A["MVP<br/>单Agent"] --> B["Core<br/>多Agent"]
+    B --> C["Scale<br/>全链路"]
+    C --> D["Opt<br/>智能化"]
 ```
 
 ## 贡献

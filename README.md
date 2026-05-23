@@ -166,10 +166,10 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ### Technical Evolution Roadmap（Mermaid）
 
 ```mermaid
-flow LR
-    A[MVP<br>Single Agent] --> B[Core<br>Multi Agent]
-    B --> C[Scale<br>Full Chain]
-    C --> D[Opt<br>Smart]
+graph LR
+    A["MVP<br/>Single Agent"] --> B["Core<br/>Multi Agent"]
+    B --> C["Scale<br/>Full Chain"]
+    C --> D["Opt<br/>Smart"]
 ```
 
 ## Contributing
