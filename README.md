@@ -158,13 +158,18 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ### Technical Evolution Roadmap
 
-```
-┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐
-│  MVP    │ -> │  Core   │ -> │  Scale  │ -> │   Opt   │
-│ Single  │    │ Multi   │    │Full Chain│   │Smart    │
-│  Agent  │    │  Agent  │    │         │    │         │
-└─────────┘    └─────────┘    └─────────┘    └─────────┘
-   1-2mo        3-4mo         5-6mo         6-12mo
+| Phase | MVP | Core | Scale | Opt |
+|-------|-----|------|-------|-----|
+| Name | Single Agent | Multi Agent | Full Chain | Smart |
+| Duration | 1-2mo | 3-4mo | 5-6mo | 6-12mo |
+
+### Technical Evolution Roadmap（Mermaid）
+
+```mermaid
+flow LR
+    A[MVP<br>Single Agent] --> B[Core<br>Multi Agent]
+    B --> C[Scale<br>Full Chain]
+    C --> D[Opt<br>Smart]
 ```
 
 ## Contributing
