@@ -122,6 +122,51 @@ pytest tests/ -v --tb=short
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
+## Project Status
+
+### Completed ✅
+
+| Module | Function | Status | Notes |
+|--------|----------|--------|-------|
+| **Router Agent** | Intent recognition, task routing | ✅ Done | Supports 5 intents: inventory/route/exception/notify/data |
+| **Inventory Agent** | Warehouse stock queries | ✅ Done | Mock mode, multi-warehouse support |
+| **Routing Agent** | Logistics planning | ✅ Done | 3 transport types: highway/rail/water |
+| **Exception Agent** | Anomaly handling | ✅ Done | 4 exception types: delay/refuse/damage/missing |
+| **Notification Agent** | Multi-channel notifications | ✅ Done | WeChat/DingTalk/Email support |
+| **MCP Server** | Mock API services | ✅ Done | FastAPI with ERP/WMS/TMS simulation |
+| **WeChat Bot** | WeChat integration | ✅ Done | Message handling & event triggering |
+| **Test Suite** | Unit/Integration tests | ✅ Done | 29 test cases, all passing |
+| **CI/CD** | GitHub Actions | ✅ Done | CI build + CodeQL security scan |
+| **Open Source** | LICENSE/Docs | ✅ Done | MIT license, EN/CN README |
+
+### To Do 🔄
+
+| Module | Function | Priority | Notes |
+|--------|----------|----------|-------|
+| **Data Agent** | Data recording & persistence | P1 | Currently placeholder |
+| **Real System Integration** | ERP/WMS/TMS real APIs | P1 | Replace Mock with real systems |
+| **Customer Profiling** | Customer data analytics | P2 | Precision marketing support |
+| **Price Prediction** | AI dynamic pricing | P2 | Demand forecasting model |
+| **Smart Customer Service** | Multi-turn conversation | P2 | RAG knowledge base enhancement |
+| **Risk Control Agent** | Credit assessment/anti-fraud | P2 | Financial scenario |
+| **Cross-border Service** | Multi-language/compliance | P3 | International support |
+| **HITL Approval** | Human confirmation nodes | P2 | Key decision human intervention |
+| **RAG Knowledge Base** | SOP/Historical cases | P2 | Agent capability enhancement |
+| **Model Routing** | Auto-select large/small models | P3 | Cost optimization |
+| **Visual Debugging** | LangSmith integration | P3 | Observability enhancement |
+| **Performance Monitoring** | Grafana dashboards | P3 | Production monitoring |
+
+### Technical Evolution Roadmap
+
+```
+┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐
+│  MVP    │ -> │  Core   │ -> │  Scale  │ -> │   Opt   │
+│ Single  │    │ Multi   │    │Full Chain│   │Smart    │
+│  Agent  │    │  Agent  │    │         │    │         │
+└─────────┘    └─────────┘    └─────────┘    └─────────┘
+   1-2mo        3-4mo         5-6mo         6-12mo
+```
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit issues and pull requests.
