@@ -35,8 +35,8 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/supply-chain-agent"
-Documentation = "https://github.com/yourusername/supply-chain-agent#readme"
+Homepage = "https://github.com/dalianmao000/SteelEngine"
+Documentation = "https://github.com/dalianmao000/SteelEngine#readme"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
