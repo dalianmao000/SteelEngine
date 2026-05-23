@@ -1,138 +1,139 @@
-# AI产品经理业务需求文档
+# AI Product Manager Business Requirements
 
 ---
 
-## 一、业务背景
+## 1. Business Background
 
-该公司为**产业互联网B2B电商平台**，覆盖全产业链业务，包括：
-- 电商交易、仓储加工、物流运输、供应链金融、大数据服务、国际贸易
+This project is for an **Industrial Internet B2B e-commerce platform** covering the full industry chain:
 
----
-
-## 二、业务痛点
-
-| 业务环节 | 核心痛点 |
-|---------|---------|
-| **交易匹配** | SKU非标、价格波动剧烈、供需匹配依赖人工经验 |
-| **供应链履约** | 系统割裂、多方协调成本高、异常响应慢、非标场景多 |
-| **金融服务** | 下游中小微企业风控难、授信周期长、缺乏动态信用评估 |
-| **跨境业务** | 多语言/多币种/合规复杂、本地化运营成本高 |
-| **内部运营** | 销售跟进/合同审核/数据报表高度依赖人工、流程冗长 |
+- E-commerce trading, warehousing, logistics, supply chain finance, big data services, international trade
 
 ---
 
-## 三、业务需求清单
+## 2. Business Pain Points
 
-### 3.1 智能交易与营销
-
-| 需求 | 描述 |
-|------|------|
-| AI价格预测与动态定价 | 基于历史成交、宏观指标、库存水位、钢厂产能构建预测模型 |
-| 供需智能匹配推荐 | 根据客户画像与交易历史智能推荐匹配方案 |
-| 销售话术生成器 | 辅助销售快速生成个性化沟通内容 |
-| 客户画像分析 | 多维度标签体系支撑精准营销 |
-
-### 3.2 供应链履约自动化
-
-| 需求 | 描述 |
-|------|------|
-| 订单履约全链路调度Agent | 覆盖：库存匹配→仓储排产→物流调度→异常处理→签收结算 |
-| 跨系统工作流编排 | 无缝对接ERP、WMS、TMS等系统，实现订单→排产→仓储→物流→签收自动化 |
-| 异常自动预警与智能重路由 | 监控物流轨迹，异常延迟自动触发重路由与通知 |
-| 资源调度编排器 | 仓储/车辆/加工设备统一调度优化 |
-
-### 3.3 供应链金融风控
-
-| 需求 | 描述 |
-|------|------|
-| 动态企业信用评估 | 整合交易流水、物流轨迹、工商司法、舆情等多维数据构建信用画像 |
-| 自动化授信审批流 | 智能风控审批工作台，支持快速授信决策 |
-| 贷后预警Agent | 实时监控+风险预警+自动处置 |
-| 反欺诈Agent | 识别异常交易行为与欺诈模式 |
-
-### 3.4 跨境多语言服务
-
-| 需求 | 描述 |
-|------|------|
-| 多语种智能客服/销售助手 | 支持海外多语言交互，降低本地化人力成本 |
-| 跨境单证自动化处理 | OCR+LLM解析，提效合规审查与结算流程 |
-| 汇率风险提示 | 实时监控+自动预警跨境结算风险 |
-| 多语言Agent网关 | 统一接入海外各业务系统 |
-
-### 3.5 内部运营提效
-
-| 需求 | 描述 |
-|------|------|
-| 销售Copilot | 智能跟进提醒/合同生成/数据报表 |
-| 合同智能审查 | 自动提取关键条款+风险提示+合规校验 |
-| 管理层决策支持 | 数据洞察看板+异常预警+决策建议 |
-| 企业级AI助手门户 | 统一入口+业务Copilot矩阵+知识问答 |
+| Business Area | Core Pain Points |
+|--------------|-----------------|
+| **Trading/Matching** | Non-standard SKUs, volatile pricing, manual reliance for supply-demand matching |
+| **Supply Chain Fulfillment** | System fragmentation, high coordination costs, slow exception response |
+| **Financial Services** | Difficult risk control for downstream SMEs, long credit approval cycles |
+| **Cross-border Business** | Multi-language/multi-currency complexity, high localization costs |
+| **Internal Operations** | Manual-heavy sales follow-up, contract review, reporting processes |
 
 ---
 
-## 四、技术能力要求
+## 3. Business Requirements
 
-### 4.1 工作流Agent能力
+### 3.1 Intelligent Trading & Marketing
 
-| 能力项 | 具体要求 |
-|--------|---------|
-| 流程编排 | 条件分支、并行节点、人工审批（Human-in-the-loop）、超时重试、异常回滚 |
-| 工具调用 | 统一API网关对接内部系统，支持自定义插件扩展，工具白名单管控 |
-| 上下文与记忆 | 支持跨会话业务上下文保持（如客户画像、历史订单、合同条款） |
-| 可控与可解释 | 关键决策输出依据链，支持人工覆写与审计 |
-| 成本与性能 | 模型路由（按场景匹配大小模型）、缓存机制、并发限流、调用成本看板 |
+| Requirement | Description |
+|-------------|-------------|
+| AI Price Prediction & Dynamic Pricing | Prediction model based on historical transactions, macro indicators, inventory levels, production capacity |
+| Smart Supply-Demand Matching | Recommendations based on customer profiles and transaction history |
+| Sales Talk Generator | Assist sales with personalized communication content |
+| Customer Profiling | Multi-dimensional tagging for precision marketing |
 
-### 4.2 技术架构要求
+### 3.2 Supply Chain Fulfillment Automation
 
-| 层级 | 要求 |
-|------|------|
-| 接入层 | Web控制台、企业微信/钉钉机器人、API网关、语音/邮件/小程序 |
-| 编排层 | 工作流引擎（状态机）、任务路由、HITL审批节点、异常降级 |
-| 能力层 | Planner(规划)、Memory(记忆)、ToolCalling(工具)、Eval(评估) |
-| 支撑层 | 业务系统API、向量知识库、模型路由网关、日志Trace系统、权限审计 |
+| Requirement | Description |
+|-------------|-------------|
+| Order Fulfillment Full-chain Agent | Coverage: inventory matching → warehouse scheduling → logistics → exception handling → delivery |
+| Cross-system Workflow Orchestration | Seamless integration with ERP, WMS, TMS for order → scheduling → warehouse → logistics → delivery automation |
+| Exception Auto-alert & Smart Re-routing | Monitor logistics, auto-trigger re-routing and notifications on delays |
+| Resource Scheduling Orchestrator | Unified scheduling for warehouse/vehicle/processing equipment |
 
----
+### 3.3 Supply Chain Finance Risk Control
 
-## 五、落地优先级
+| Requirement | Description |
+|-------------|-------------|
+| Dynamic Enterprise Credit Assessment | Multi-dimensional data integration: transaction flows, logistics traces, business、司法, sentiment |
+| Automated Credit Approval Flow | Intelligent risk control approval dashboard, fast credit decisions |
+| Post-loan Alert Agent | Real-time monitoring + risk alerts + automated handling |
+| Anti-fraud Agent | Identify abnormal transaction patterns and fraud |
 
-| 优先级 | 场景 | 周期 | 业务价值 |
-|--------|------|------|----------|
-| P0（速赢） | 智能客服、合同自动化、基础价格看板 | 1-3个月 | 快速验证AI价值、提升人效、建立内部信心 |
-| P1（核心） | 供应链工作流Agent、动态信用评估、跨系统调度编排 | 3-6个月 | 直接降本增效、打通核心价值链 |
-| P2（深水区） | 全链路自主决策Agent、跨境多智能体协同、产业垂直模型微调 | 6-12个月 | 构建行业技术壁垒、支撑国际化战略 |
+### 3.4 Cross-border Multi-language Services
 
----
+| Requirement | Description |
+|-------------|-------------|
+| Multi-language Customer Service/Sales Assistant | Support overseas multi-language interaction, reduce localization costs |
+| Cross-border Document Auto-processing | OCR + LLM parsing, improve compliance review and settlement efficiency |
+| Exchange Rate Risk Alerts | Real-time monitoring + auto-alerts for cross-border settlement risks |
+| Multi-language Agent Gateway | Unified access to overseas business systems |
 
-## 六、核心成功指标
+### 3.5 Internal Operations Efficiency
 
-| 业务域 | 指标 |
-|--------|------|
-| 交易转化 | 智能匹配采纳率≥X%，报价响应时效缩短X%，库存周转率提升X% |
-| 供应链履约 | 调度自动化率≥60%，异常处理时效↓70%，人工干预率≤30%，单均履约成本↓15% |
-| 供应链金融 | 授信审批时效从X天→X小时，风控坏账率≤X%，自动化审批通过率≥X% |
-| 运营提效 | 人工工作量减少X%，流程自动化率≥X%，AI功能月活渗透率≥X% |
-| 技术效能 | Agent任务完成率≥92%，工具调用准确率≥95%，平均响应<8s |
-
----
-
-## 七、风险与治理
-
-| 风险类型 | 应对策略 |
-|----------|---------|
-| 幻觉/错误决策 | 工具调用白名单+结构化JSON输出+关键节点HITL+规则引擎兜底 |
-| 系统对接阻力 | API网关统一封装；先读后写；灰度发布；一键回滚 |
-| 上下文丢失 | 会话状态持久化；业务ID透传；知识库版本化管理 |
-| 成本与延迟 | 模型路由+Prompt缓存+异步任务队列+热点场景预计算 |
-| 合规与审计 | 全操作留痕；决策依据链导出；权限分级；满足等保/数据安全法 |
+| Requirement | Description |
+|-------------|-------------|
+| Sales Copilot | Smart follow-up reminders / contract generation / data reporting |
+| Contract Intelligent Review | Auto-extract key terms + risk alerts + compliance validation |
+| Management Decision Support | Data insight dashboards + exception alerts + decision recommendations |
+| Enterprise AI Assistant Portal | Unified portal + business Copilot matrix + knowledge Q&A |
 
 ---
 
-## 八、评估与迭代机制
+## 4. Technical Capability Requirements
 
-| 评估维度 | 指标 |
-|----------|------|
-| 技术效能 | 任务完成率≥92%、工具调用准确率≥95%、平均响应<8s、单次成本↓40% |
-| 业务价值 | 人工干预率≤30%、异常处理时效≤2h、客户满意度↑15%、履约准时率↑8% |
-| 迭代闭环 | 线上问题归类→Prompt/工具/流程优化→A/B测试→灰度发布→全量 |
+### 4.1 Workflow Agent Capabilities
+
+| Capability | Requirements |
+|------------|-------------|
+| Process Orchestration | Conditional branches, parallel nodes, Human-in-the-loop approval, timeout retry, exception rollback |
+| Tool Calling | Unified API gateway for internal systems, custom plugin extension, tool whitelist control |
+| Context & Memory | Cross-session business context persistence (customer profiles, order history, contract terms) |
+| Controllability & Explainability | Key decisions output rationale chain, support manual override and audit |
+| Cost & Performance | Model routing (match scenario to model size), caching, concurrency limiting, call cost dashboard |
+
+### 4.2 Technical Architecture Requirements
+
+| Layer | Requirements |
+|-------|-------------|
+| Access Layer | Web console, WeChat/DingTalk bots, API gateway, voice/email/mini-program |
+| Orchestration Layer | Workflow engine (state machine), task routing, HITL approval nodes, exception degradation |
+| Capability Layer | Planner, Memory, ToolCalling, Eval |
+| Support Layer | Business system APIs, vector knowledge base, model routing gateway, log Trace system, permission audit |
+
+---
+
+## 5. Implementation Priority
+
+| Priority | Scenario | Duration | Business Value |
+|----------|----------|----------|---------------|
+| P0 (Quick Win) | Smart customer service, contract automation, basic price dashboard | 1-3 months | Fast AI value verification, efficiency improvement, internal confidence building |
+| P1 (Core) | Supply chain workflow Agent, dynamic credit assessment, cross-system scheduling orchestration | 3-6 months | Direct cost reduction and efficiency, core value chain integration |
+| P2 (Deep Water) | Full-chain autonomous decision Agent, cross-border multi-Agent collaboration, industry vertical model fine-tuning | 6-12 months | Build industry technical barriers, support international strategy |
+
+---
+
+## 6. Core Success Metrics
+
+| Business Domain | Metrics |
+|----------------|---------|
+| Trading Conversion | Smart matching adoption ≥ X%, quote response time reduced X%, inventory turnover improved X% |
+| Supply Chain Fulfillment | Scheduling automation ≥ 60%, exception handling time ↓70%, manual intervention ≤ 30%, per-order fulfillment cost ↓15% |
+| Supply Chain Finance | Credit approval time from X days → X hours, risk bad debt rate ≤ X%, automated approval rate ≥ X% |
+| Operations Efficiency | Manual work reduced X%, process automation ≥ X%, AI feature monthly active penetration ≥ X% |
+| Technical Efficiency | Agent task completion ≥ 92%, tool call accuracy ≥ 95%, avg response < 8s |
+
+---
+
+## 7. Risk & Governance
+
+| Risk Type | Response Strategy |
+|-----------|-------------------|
+| Hallucination/Wrong Decisions | Tool call whitelist + structured JSON output + key node HITL + rule engine backup |
+| System Integration Resistance | API gateway unified encapsulation; read-first, write-second; gray release; one-click rollback |
+| Context Loss | Session state persistence; business ID transmission; knowledge base version management |
+| Cost & Latency | Model routing + Prompt caching + async task queue + hot scenario pre-computation |
+| Compliance & Audit | Full operation logging; decision rationale chain export; permission grading; meet security compliance |
+
+---
+
+## 8. Evaluation & Iteration Mechanism
+
+| Evaluation Dimension | Metrics |
+|---------------------|---------|
+| Technical Efficiency | Task completion ≥ 92%, tool call accuracy ≥ 95%, avg response < 8s, per-call cost ↓40% |
+| Business Value | Manual intervention ≤ 30%, exception handling ≤ 2h, customer satisfaction ↑15%, fulfillment on-time rate ↑8% |
+| Iteration Loop | Online issue classification → Prompt/tool/process optimization → A/B test → gray release → full rollout |
 
 ---

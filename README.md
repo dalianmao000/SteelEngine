@@ -1,54 +1,127 @@
-# 供应链履约Agent系统
+# Supply Chain Agent System
 
-## 项目概述
+A production-ready AI Agent system for supply chain fulfillment, built with Claude Code native capabilities.
 
-基于Claude Code原生的供应链履约Agent系统，采用Router + Sub-Agents架构，通过企业微信机器人接入用户。
+## Overview
 
-## 系统架构
+This project implements a **Router + Sub-Agents** architecture for supply chain management, featuring:
+
+- **Intent Recognition**: Automatic routing of user messages to appropriate agents
+- **Inventory Management**: Real-time warehouse stock queries and allocation
+- **Route Planning**: Logistics cost and time optimization
+- **Exception Handling**: Automated anomaly detection and resolution
+- **Notification System**: Multi-channel alerts (WeChat/Email/DingTalk)
+
+## Architecture
 
 ```
-用户 → 企业微信机器人 → Router Agent → Sub-Agents → MCP Server(Mock API)
+User → WeChat Bot → Router Agent → Sub-Agents → MCP Server (Mock APIs)
 ```
 
-## Agent组件
+### Agent Components
 
-| Agent | 职责 |
-|-------|------|
-| Router Agent | 意图识别、任务路由 |
-| Inventory Agent | 库存查询 |
-| Routing Agent | 路线规划 |
-| Exception Agent | 异常处理 |
-| Notification Agent | 通知推送 |
+| Agent | Responsibility |
+|-------|----------------|
+| Router Agent | Intent recognition, task routing |
+| Inventory Agent | Warehouse stock queries |
+| Routing Agent | Logistics planning |
+| Exception Agent | Anomaly handling |
+| Notification Agent | Multi-channel notifications |
 
-## 快速开始
+## Quick Start
 
-### 1. 安装依赖
+### 1. Install Dependencies
+
 ```bash
-pip install fastapi uvicorn pydantic pytest
+pip install -r requirements.txt
 ```
 
-### 2. 启动MCP Server
-```bash
-python -m mcp_server.server
-```
+### 2. Run Tests
 
-### 3. 运行测试
 ```bash
+export PYTHONPATH=/path/to/project
 pytest tests/ -v
 ```
 
-## 目录结构
+### 3. Start MCP Server
 
-```
-├── skills/          # Agent Skill定义
-├── agents/          # Agent实现
-├── mcp_server/      # MCP Server (Mock API)
-├── bot/             # 企业微信机器人
-└── tests/           # 测试文件
+```bash
+python -m mcp_server.server
+# Server runs on http://0.0.0.0:8080
 ```
 
-## 验收指标
+### 4. Test API Endpoints
 
-- 任务完成率 ≥ 85%
-- 意图识别准确率 ≥ 90%
-- 工具调用成功率 ≥ 95%
+```bash
+# Query inventory
+curl -X POST http://localhost:8080/api/inventory/query \
+  -H "Content-Type: application/json" \
+  -d '{"sku": "Q235B, 12mm", "quantity": 50}'
+
+# Calculate route
+curl -X POST http://localhost:8080/api/routing/calculate \
+  -H "Content-Type: application/json" \
+  -d '{"source": "Shanghai", "destination": "Guangzhou", "weight": 30}'
+```
+
+## Project Structure
+
+```
+.
+├── skills/              # Agent skill definitions
+├── agents/              # Agent implementations
+│   └── supply_chain/    # Supply chain domain agents
+├── mcp_server/          # MCP Server (Mock APIs)
+│   ├── server.py        # FastAPI server
+│   ├── mock_erp.py      # Mock ERP system
+│   ├── mock_wms.py      # Mock WMS system
+│   └── mock_tms.py      # Mock TMS system
+├── bot/                 # WeChat bot integration
+├── tests/               # Test suites
+├── docs/                # Documentation
+├── README.md
+├── LICENSE
+└── pyproject.toml
+```
+
+## Development
+
+### Run All Tests
+
+```bash
+PYTHONPATH=. pytest tests/ -v
+```
+
+### Add New Agent
+
+1. Create skill definition in `skills/<agent_name>/skill.md`
+2. Implement agent in `agents/supply_chain/<agent_name>.py`
+3. Add tests in `tests/test_<agent_name>.py`
+4. Register agent in Router Agent's task routing
+
+## Testing
+
+```bash
+# Unit tests
+pytest tests/test_router.py -v
+
+# Integration tests
+pytest tests/test_integration.py -v
+
+# All tests
+pytest tests/ -v --tb=short
+```
+
+## Metrics
+
+- Task Completion Rate ≥ 85%
+- Intent Recognition Accuracy ≥ 90%
+- Tool Call Success Rate ≥ 95%
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit issues and pull requests.
